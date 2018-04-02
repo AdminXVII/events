@@ -1,0 +1,13 @@
+[Unit]
+Description=A multiplexing server to send real-time server sent events based on unix sockets connections
+After=syslog.target network.target events.socket
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/events
+ExecReload=/bin/kill -HUP $MAINPID
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+Also=graphical.target
